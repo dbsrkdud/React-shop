@@ -3,11 +3,13 @@ import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import 메인사진 from './img/bg.png';
 import { useState } from 'react';
 import data from './data.js';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   let [shoes] = useState(data);
   return (
     <div className="App">
+
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Shop</Navbar.Brand>
@@ -19,8 +21,19 @@ function App() {
         </Container>
       </Navbar>
 
+      <Link to="/">홈 </Link>
+      <Link to="/detail">상세페이지</Link>
+
       <div className="main-bg" style={ { backgroundImage : 'url(' + 메인사진 + ')' } }></div>
-      <Product shoes={ shoes } />
+
+
+      <Routes>
+        <Route path="/" element={ 
+          <Product shoes={ shoes } />
+        }>
+        </Route>
+        <Route path="/detail" element={ <div>상세페이지</div> } />
+      </Routes>
 
       {/* <div className="container">
         <div className="row">
