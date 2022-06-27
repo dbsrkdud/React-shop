@@ -24,8 +24,6 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
-      <div className="main-bg" style={ { backgroundImage : 'url(' + 메인사진 + ')' } }></div>
       
       <Routes>
         <Route path="/" element={ 
@@ -72,21 +70,24 @@ function Event(){
 function Product(props){
   let data = [...props.shoes];
   return (
-    <div className="container">
-        <div className="row">
-        {
-          data.map((a, i) => {
-            return (
-              <div className="col-md-4">
-                <img src= { `https://codingapple1.github.io/shop/shoes${ (i + 1) }.jpg` } width="80%" />
-                <h4>{ a.title }</h4>
-                <h4>{ a.price }</h4>
-              </div>
-            )
-          })
-        }
+    <div>
+      <div className="main-bg" style={ { backgroundImage : 'url(' + 메인사진 + ')' } }></div>
+        <div className="container">
+            <div className="row">
+            {
+              data.map((a, i) => {
+                return (
+                  <div className="col-md-4">
+                    <img src= { `https://codingapple1.github.io/shop/shoes${ (i + 1) }.jpg` } width="80%" />
+                    <h4>{ a.title }</h4>
+                    <h4>{ a.price }</h4>
+                  </div>
+                )
+              })
+            }
+            </div>
         </div>
-    </div>
+      </div>
   )
 
 }
