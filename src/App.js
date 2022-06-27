@@ -7,6 +7,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
 
 function App() {
+
   let [shoes] = useState(data);
   let navigate = useNavigate();
 
@@ -31,7 +32,7 @@ function App() {
           <Product shoes={ shoes } />
         }>
         </Route>
-        <Route path="/detail" element={ <Detail /> } />
+        <Route path="/detail/:id" element={ <Detail shoes={ shoes } /> } />
 
         <Route path="/about" element={ <About /> } >
           <Route path="member" element={ <div>멤버</div> } />
