@@ -23,8 +23,28 @@ function Detail(props){
     let [alert, setAlert] = useState(true);
 
     useEffect( () => {
-        setTimeout( () => { setAlert(false) }, 2000);
-    });
+        let timer = setTimeout( () => { setAlert(false) }, 2000);
+        return () => {
+            // useEffect 동작 전에 실행
+            // 기존 코드 치우는 경우 자주 사용
+            clearTimeout(timer);
+        }
+    }, []);
+
+    /*
+    1. 재렌더링마다 실행
+    useEffect( () => { } )
+    1-1. 특정 state 변경시에만 실행 
+    useEffect( () => { }, [count] )
+    2. mount시 1회 실행
+    useEffect( () => { }, [] )
+    3. unmount시 1회 실행
+    useEffect( () => {
+        return () => {
+
+        }
+    }, [])
+    */
     
     return (
         <div className="container">
