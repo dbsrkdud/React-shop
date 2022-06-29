@@ -5,10 +5,11 @@ import { useState } from 'react';
 import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
+import axios from 'axios';
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -27,7 +28,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={ 
-          <Product shoes={ shoes } />
+          <Product shoes={ shoes }/>
         }>
         </Route>
         <Route path="/detail/:id" element={ <Detail shoes={ shoes } /> } />
@@ -44,7 +45,13 @@ function App() {
         
         <Route path="*" element={ <div>404</div> } />
       </Routes>
-
+      <button onClick={ () => {
+        axios.get('https://codingapple1.github.io/shop/data2.json')
+          .then((결과) => {
+            let copy = [...shoes, ...결과.data];
+            setShoes(copy);
+          });
+        }}>더보기</button>
     </div>
   );
 }

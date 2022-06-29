@@ -21,6 +21,7 @@ function Detail(props){
     });
     let [count, setCount] = useState(0);
     let [alert, setAlert] = useState(true);
+    let [num, setNum] = useState('');
 
     useEffect( () => {
         let timer = setTimeout( () => { setAlert(false) }, 2000);
@@ -31,6 +32,14 @@ function Detail(props){
         }
     }, []);
 
+    useEffect( () => {
+        if(isNaN(num) == true) {
+            // alert('그러지마세요');
+            console.log("돈두댓");
+
+        }
+    }, [num])
+        
     /*
     1. 재렌더링마다 실행
     useEffect( () => { } )
@@ -64,6 +73,7 @@ function Detail(props){
                     <img src={ `https://codingapple1.github.io/shop/shoes${ (parseInt(id) + 1) }.jpg` } width="100%" />
                 </div>
                 <div className="col-md-6">
+                    <input onChange={ (e) => { setNum(e.target.value) } }></input>
                     <h4 className="pt-5">{ 찾은상품.title }</h4>
                     <p>{ 찾은상품.content }</p>
                     <p>{ 찾은상품.price }원</p>
