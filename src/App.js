@@ -7,6 +7,14 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import axios from 'axios';
 
+/* axios.get 숙제 
+  1. 버튼 2번 눌렀을 때 7, 8, 9번 상품 가져오기
+  >> 버튼 횟수 저장하는 스위치
+  2. 버튼 3번 눌렀을 때 상품 더 없다고 알려주기
+  >> 조건문
+  3. 버튼 눌렀을 때 로딩 중 UI
+*/
+
 function App() {
 
   let [shoes, setShoes] = useState(data);
@@ -46,11 +54,26 @@ function App() {
         <Route path="*" element={ <div>404</div> } />
       </Routes>
       <button onClick={ () => {
+        // 로딩 중 UI 띄우기
         axios.get('https://codingapple1.github.io/shop/data2.json')
           .then((결과) => {
             let copy = [...shoes, ...결과.data];
             setShoes(copy);
-          });
+            // 로딩 중 UI 숨기기
+          })
+          .catch ( () => {
+            console.log("실패 시 실행");
+          })
+
+          axios.post('/', { name : 'kim' });
+
+          // 동시에 ajax 여러개 요청
+          Promise.all([ axios.get('/url1'), axios.get('/url2') ])
+            .then( () => {
+
+            }) 
+
+
         }}>더보기</button>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -22,6 +23,7 @@ function Detail(props){
     let [count, setCount] = useState(0);
     let [alert, setAlert] = useState(true);
     let [num, setNum] = useState('');
+    let [탭, 탭변경] = useState(0);
 
     useEffect( () => {
         let timer = setTimeout( () => { setAlert(false) }, 2000);
@@ -80,8 +82,33 @@ function Detail(props){
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
+
+            <Nav variant="tabs" defaultActiveKey="link0">
+                <Nav.Item>
+                    <Nav.Link onClick={ () => { 탭변경(0) } } eventKey="link0">버튼0</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={ () => { 탭변경(1) } } eventKey="link1">버튼1</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={ () => { 탭변경(2) } } eventKey="link2">버튼2</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <TabContent 탭={ 탭 } />
+
         </div> 
     )
+}
+
+
+function TabContent(props) {
+    if(props.탭 == 0) {
+        return <div>내용0</div>
+    } else if( props.탭 == 1){
+        return <div>내용1</div>
+    } else if(props.탭 == 2){
+        return <div>내용2</div>
+    }
 }
 
 export default Detail;
