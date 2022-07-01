@@ -1,4 +1,12 @@
 /* CSS 오염방지 -> 컴포넌트.moduls.css */
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
 
 .main-bg {
   height: 300px;
