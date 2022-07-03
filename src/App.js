@@ -6,6 +6,7 @@ import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import axios from 'axios';
+import Cart from './routes/Cart.js';
 
 /* axios.get 숙제 
   1. 버튼 2번 눌렀을 때 7, 8, 9번 상품 가져오기
@@ -42,11 +43,14 @@ function App() {
           <Product shoes={ shoes }/>
         }>
         </Route>
+
         <Route path="/detail/:id" element={
           <Context1.Provider value={ {재고} }>
             <Detail shoes={ shoes } /> 
           </Context1.Provider>
         } />
+
+        <Route path="/cart" element={ <Cart /> } />
 
         <Route path="/about" element={ <About /> } >
           <Route path="member" element={ <div>멤버</div> } />
