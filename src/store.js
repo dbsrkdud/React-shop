@@ -3,8 +3,15 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 // useState 역할
 let user = createSlice({
     name : 'user',
-    initialState : 'yun'
+    initialState : 'yun',
+    reducers : {
+        changeName(state){
+            return state + " Kim"
+        }
+    }
 })
+
+export let { changeName } = user.actions
 
 let cart = createSlice({
     name : 'cart',
