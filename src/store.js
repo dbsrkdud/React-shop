@@ -6,20 +6,23 @@ let cart = createSlice({
     name : 'cart',
     initialState : [
         {id : 0, name : "White and Black", count : 2},
-        {id : 2, name : "Grey Yordan", count : 1},
+        {id : 2, name : "Grey Yordan", count : 1}
     ],
     reducers : {
         addCount(state, action){
-            state[action.payload].count++;
+            let 번호 = state.findIndex( (a) => { return a.id == action.payload } )
+            state[번호].count++;
         },
         minusCount(state, action){
             state[action.payload].count--;
+        },
+        addItem(state, action){
+            state.push(action.payload)
         }
-        
     }
 })
 
-export let { addCount, minusCount } = cart.actions;
+export let { addCount, minusCount, addItem } = cart.actions;
 
 let stock = createSlice({
     name : 'stock',

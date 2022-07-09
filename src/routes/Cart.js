@@ -11,10 +11,7 @@ function Cart(){
     return (
         <div>
 
-            { state.user.name + state.user.age }의 장바구니 
-            <button onClick={ () => {
-                dispatch(increase(100));
-            }}>버튼</button>
+            { state.user.name }의 장바구니 
 
             <Table>
                 <thead>
@@ -34,7 +31,7 @@ function Cart(){
                                     <td>{ state.cart[i].name }</td>
                                     <td>{ state.cart[i].count }</td>
                                     <td><button onClick={ () => {
-                                        dispatch(addCount(i))
+                                        dispatch(addCount(state.cart[i].id))
                                         }}>+</button>
                                         <button onClick={ () => { 
                                             dispatch(minusCount(i))
